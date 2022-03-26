@@ -1,18 +1,23 @@
 import React from 'react';
 import styles from './Card.module.scss';
 
-const Card = ({obj, title, price, imageUrl, onClickAddCart, onClickAddFavorite }) => {
-  const [plusOrChecked, setPlusOrChecked] = React.useState(false);
+const Card = ({obj, title, price, imageUrl, onClickAddCart, onClickAddFavorite, favorite= false }) => {
+  const [isAdded, setIsAdded] = React.useState(false);
+  const [isFavorite, setIsFavorite] = React.useState(favorite);
 
-  const handleClickPlus = () => {
-    setPlusOrChecked(!plusOrChecked);
+  const handleClickAdded = () => {
+    setIsAdded(!isAdded);
     onClickAddCart(obj);
+  };
+  const handleClickFavorite = () => {
+    setIsFavorite(!isFavorite);
+    onClickAddFavorite(obj);
   };
 
   return (
     <div className={`${styles.card} mb-15`}>
-      <div className={styles.favorite} onClick={onClickAddFavorite}>
-        <img src={'/img/heart-unliked.svg'} alt='Unliked' />
+      <div className={styles.favorite} onClick={handleClickFavorite}>
+        <img src={!isFavorite ? '/img/unliked.svg' : '/img/liked.svg'} alt='Unliked' />
       </div>
       <img width={133} height={112} src={imageUrl} alt='Sneakers' />
       <h5>{title}</h5>
@@ -23,9 +28,9 @@ const Card = ({obj, title, price, imageUrl, onClickAddCart, onClickAddFavorite }
         </div>
         <img
           className={`${styles.plus} cu-p`}
-          src={!plusOrChecked ? './img/btn-plus.svg' : './img/btn-checked.svg'}
+          src={!isAdded ? './img/btn-plus.svg' : './img/btn-checked.svg'}
           alt='Plus'
-          onClick={handleClickPlus}
+          onClick={handleClickAdded}
         />
       </div>
     </div>

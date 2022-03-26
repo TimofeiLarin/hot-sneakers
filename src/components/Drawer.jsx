@@ -1,6 +1,6 @@
 import React from 'react';
 
-const Drawer = ({ onClickClose, items = [] }) => {
+const Drawer = ({ onClickClose, items = [], onDelete}) => {
   return (
     <div className='overlay'>
       <div className='drawer'>
@@ -8,7 +8,8 @@ const Drawer = ({ onClickClose, items = [] }) => {
           Корзина{' '}
           <img className='cu-p' src='/img/btn-remove.svg' alt='Remove' onClick={onClickClose} />
         </h2>
-
+        {items.length > 0 ? (
+        <>
         <div className='items'>
           {items.map((item, index) => {
             return (
@@ -21,12 +22,11 @@ const Drawer = ({ onClickClose, items = [] }) => {
                   <p className='mb-5'>{item.title}</p>
                   <b>{item.price} руб.</b>
                 </div>
-                <img className='removeBtn' src='/img/btn-remove.svg' alt='Remove' />
+                <img className='removeBtn' src='/img/btn-remove.svg' alt='Remove' onClick={() => onDelete(item.id)}/>
               </div>
             );
           })}
         </div>
-
         <div className='cartTotalBlock'>
           <ul>
             <li>
@@ -44,6 +44,18 @@ const Drawer = ({ onClickClose, items = [] }) => {
             Оформить заказ <img src='/img/arrow.svg' alt='Arrow' />
           </button>
         </div>
+        </>)
+        :
+       ( <div className="cartEmpty d-flex align-center justify-center flex-column flex">
+            <img className="mb-20" width="120px" height="120px" src="/img/empty-cart.jpg" alt="Empty" />
+            <h2>Корзина пустая</h2>
+            <p className="opacity-6">Добавьте хотя бы одну пару кроссовок, чтобы сделать заказ.</p>
+            <button onClick={onClickClose} className="greenButton">
+              <img src="/img/arrow.svg" alt="Arrow" />
+              Вернуться назад
+            </button>
+          </div>)
+          }
       </div>
     </div>
   );
