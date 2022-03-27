@@ -15,7 +15,6 @@ function Orders() {
         setIsLoading(false);
       } catch (error) {
         alert('Ошибка при запросе заказов');
-        console.error(error);
       }
     })();
   }, []);

@@ -2,6 +2,7 @@ import React from 'react';
 
 import AppContext from '../../context';
 import ContentLoader from 'react-content-loader';
+
 import styles from './Card.module.scss';
 
 const Card = ({
