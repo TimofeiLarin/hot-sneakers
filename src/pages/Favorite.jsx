@@ -4,6 +4,7 @@ import { Card } from '../components';
 
 const Favorite = () => {
   const { onClickAddCart, favoriteItems, onClickAddFavorite } = React.useContext(AppContext);
+  console.log(favoriteItems)
   return (
     <div className='content p-40'>
       <div className='d-flex align-center justify-between mb-40'>
@@ -22,6 +23,7 @@ const Favorite = () => {
               onClickAddCart={onClickAddCart}
               onClickAddFavorite={onClickAddFavorite}
               loading={false}
+              idParent
             />
           );
         })}

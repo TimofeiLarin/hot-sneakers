@@ -12,6 +12,7 @@ const Card = ({
   onClickAddCart,
   onClickAddFavorite,
   loading = true,
+  idParent
 }) => {
   const { isItemAdded, isItemFavorite } = React.useContext(AppContext);
 
@@ -41,9 +42,9 @@ const Card = ({
         </ContentLoader>
       ) : (
         <>
-          <div className={styles.favorite} onClick={handleClickFavorite}>
-            <img src={!isItemFavorite(obj.idParent) ? '/img/unliked.svg' : '/img/liked.svg'} alt='Unliked' />
-          </div>
+          {onClickAddFavorite && <div className={styles.favorite} onClick={handleClickFavorite}>
+            <img src={!isItemFavorite(idParent) ? '/img/unliked.svg' : '/img/liked.svg'} alt='Unliked' />
+          </div>}
           <img width='100%' height={130} src={imageUrl} alt='Sneakers' />
           <h5>{title}</h5>
           <div className='d-flex justify-between align-center'>
@@ -51,12 +52,12 @@ const Card = ({
               <span>Цена:</span>
               <b>{price} руб.</b>
             </div>
-            <img
+            {onClickAddCart && <img
               className={`${styles.plus} cu-p`}
-              src={!isItemAdded(obj.idParent) ? './img/btn-plus.svg' : './img/btn-checked.svg'}
+              src={!isItemAdded(idParent) ? './img/btn-plus.svg' : './img/btn-checked.svg'}
               alt='Plus'
               onClick={handleClickAdded}
-            />
+            />}
           </div>
         </>
       )}

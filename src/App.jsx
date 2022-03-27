@@ -1,5 +1,5 @@
 import React from 'react';
-import { Route, Routes, Link } from 'react-router-dom';
+import { Route, Routes } from 'react-router-dom';
 import Axios from 'axios';
 
 import AppContext from './context';
@@ -8,6 +8,7 @@ import './app.scss';
 
 import Home from './pages/Home';
 import Favorite from './pages/Favorite';
+import Orders from './pages/Orders';
 import { Drawer, Header } from './components';
 
 function App() {
@@ -42,16 +43,21 @@ function App() {
   }, []);
 
   const onClickAddCart = async (obj) => {
-    console.log('1', cartItems)
-    console.log((cartItems.find((item) => item.idParent === obj.idParent)))
+    try {
     if (cartItems.find((item) => item.idParent === obj.idParent)) {
-      Axios.delete(`https://623d86dfdb0fc039d4b9127d.mockapi.io/cart/${(cartItems.find((item) => item.idParent === obj.idParent)).id}`);
+      Axios.delete(
+        `https://623d86dfdb0fc039d4b9127d.mockapi.io/cart/${
+          cartItems.find((item) => item.idParent === obj.idParent).id
+        }`
+      );
       setCartItems((prev) => prev.filter((item) => item.idParent !== obj.idParent));
     } else {
       const { data } = await Axios.post('https://623d86dfdb0fc039d4b9127d.mockapi.io/cart', obj);
       setCartItems((prev) => [...prev, data]);
     }
-    console.log('2', cartItems)
+  } catch(error) {
+    alert('No data cart')
+  }
   };
   const onClickDeleteCart = (id) => {
     Axios.delete(`https://623d86dfdb0fc039d4b9127d.mockapi.io/cart/${id}`);
@@ -60,7 +66,11 @@ function App() {
   const onClickAddFavorite = async (obj) => {
     try {
       if (favoriteItems.find((item) => item.idParent === obj.idParent)) {
-        Axios.delete(`https://623d86dfdb0fc039d4b9127d.mockapi.io/favorite/${(favoriteItems.find((item) => item.idParent === obj.idParent)).id}`);
+        Axios.delete(
+          `https://623d86dfdb0fc039d4b9127d.mockapi.io/favorite/${
+            favoriteItems.find((item) => item.idParent === obj.idParent).id
+          }`
+        );
         setFavoriteItems((prev) => prev.filter((item) => item.idParent !== obj.idParent));
       } else {
         const { data } = await Axios.post(
@@ -127,6 +137,7 @@ function App() {
             }
           />
           <Route path='/favorites' element={<Favorite />} />
+          <Route path='/orders' element={<Orders />} />
         </Routes>
       </div>
     </AppContext.Provider>

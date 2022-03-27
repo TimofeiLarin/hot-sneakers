@@ -11,6 +11,8 @@ const Drawer = ({ onClickClose, items = [], onDelete }) => {
   const [oderId, setOrderId] = React.useState(null);
   const [orderComplete, setOrderComplete] = React.useState(false);
 
+  const totalPrice = cartItems.reduce((sum, item) => sum + item.price, 0);
+  
   const onClickOrder = async () => {
     try {
       const { data } = await Axios.post('https://623d86dfdb0fc039d4b9127d.mockapi.io/orders', {
@@ -68,12 +70,12 @@ const Drawer = ({ onClickClose, items = [], onDelete }) => {
                 <li>
                   <span>Итого:</span>
                   <div></div>
-                  <b>21 498 руб. </b>
+                  <b>{totalPrice} руб. </b>
                 </li>
                 <li>
-                  <span>Налог 5%:</span>
+                  <span>НДС 20%:</span>
                   <div></div>
-                  <b>1074 руб. </b>
+                  <b>{Math.ceil(totalPrice * 0.2 * 100) / 100} руб. </b>
                 </li>
               </ul>
               <button className='greenButton' onClick={onClickOrder}>
