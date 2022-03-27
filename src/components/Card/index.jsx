@@ -11,20 +11,16 @@ const Card = ({
   imageUrl,
   onClickAddCart,
   onClickAddFavorite,
-  favorite = false,
   loading = true,
 }) => {
-  const { isItemAdded } = React.useContext(AppContext);
-  const [isFavorite, setIsFavorite] = React.useState(favorite);
+  const { isItemAdded, isItemFavorite } = React.useContext(AppContext);
 
   const handleClickAdded = () => {
     onClickAddCart(obj);
   };
   const handleClickFavorite = () => {
-    setIsFavorite(!isFavorite);
     onClickAddFavorite(obj);
   };
-  // added={isItemAdded(item && item.id)}
 
   return (
     <div className={`${styles.card} mb-15`}>
@@ -46,7 +42,7 @@ const Card = ({
       ) : (
         <>
           <div className={styles.favorite} onClick={handleClickFavorite}>
-            <img src={!isFavorite ? '/img/unliked.svg' : '/img/liked.svg'} alt='Unliked' />
+            <img src={!isItemFavorite(obj.idParent) ? '/img/unliked.svg' : '/img/liked.svg'} alt='Unliked' />
           </div>
           <img width='100%' height={130} src={imageUrl} alt='Sneakers' />
           <h5>{title}</h5>
@@ -57,7 +53,7 @@ const Card = ({
             </div>
             <img
               className={`${styles.plus} cu-p`}
-              src={!isItemAdded(obj.id) ? './img/btn-plus.svg' : './img/btn-checked.svg'}
+              src={!isItemAdded(obj.idParent) ? './img/btn-plus.svg' : './img/btn-checked.svg'}
               alt='Plus'
               onClick={handleClickAdded}
             />
