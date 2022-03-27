@@ -1,14 +1,33 @@
 import React from 'react';
+
 import { Card } from '../components';
 
 const Home = ({
   sneakers,
+  cartItems,
   searchValue,
   setSearchValue,
   onChangeSearchInput,
   onClickAddFavorite,
   onClickAddCart,
+  loading,
 }) => {
+  const renderItems = () => {
+    return (
+      loading
+        ? [...Array(12)]
+        : sneakers.filter((item) => item.title.toLowerCase().includes(searchValue.toLowerCase()))
+    ).map((item, index) => (
+      <Card
+        key={index}
+        obj={item}
+        {...item}
+        onClickAddFavorite={onClickAddFavorite}
+        onClickAddCart={onClickAddCart}
+        loading={loading}
+      />
+    ));
+  };
   return (
     <div className='content p-40'>
       <div className='d-flex align-center justify-between mb-40'>
@@ -26,23 +45,7 @@ const Home = ({
           <input placeholder='Поиск...' value={searchValue} onChange={onChangeSearchInput} />
         </div>
       </div>
-      <div className='d-flex flex-wrap justify-between'>
-        {sneakers
-          .filter((item) => item.title.toLowerCase().includes(searchValue.toLowerCase()))
-          .map((item, index) => {
-            return (
-              <Card
-                key={item.title + index}
-                obj={item}
-                title={item.title}
-                price={item.price}
-                imageUrl={item.imageUrl}
-                onClickAddFavorite={onClickAddFavorite}
-                onClickAddCart={onClickAddCart}
-              />
-            );
-          })}
-      </div>
+      <div className='d-flex flex-wrap justify-between'>{renderItems()}</div>
     </div>
   );
 };
