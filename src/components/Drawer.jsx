@@ -36,7 +36,7 @@ const Drawer = ({ onClickClose, items = [], onDelete }) => {
       <div className='drawer'>
         <h2 className='d-flex justify-between mb-30'>
           Корзина{' '}
-          <img className='cu-p' src='/img/btn-remove.svg' alt='Remove' onClick={onClickClose} />
+          <img className='cu-p' src='img/btn-remove.svg' alt='Remove' onClick={onClickClose} />
         </h2>
         {items.length > 0 ? (
           <>
@@ -57,7 +57,7 @@ const Drawer = ({ onClickClose, items = [], onDelete }) => {
                     </div>
                     <img
                       className='removeBtn'
-                      src='/img/btn-remove.svg'
+                      src='img/btn-remove.svg'
                       alt='Remove'
                       onClick={() => onDelete(item.id)}
                     />
@@ -79,14 +79,14 @@ const Drawer = ({ onClickClose, items = [], onDelete }) => {
                 </li>
               </ul>
               <button className='greenButton' onClick={onClickOrder}>
-                Оформить заказ <img src='/img/arrow.svg' alt='Arrow' />
+                Оформить заказ <img src='img/arrow.svg' alt='Arrow' />
               </button>
             </div>
           </>
         ) : (
           <Info
             title={orderComplete ? 'Заказ оформлен' : 'Корзина пустая'}
-            image={orderComplete ? '/img/complete-order.jpg' : '/img/empty-cart.jpg'}
+            image={orderComplete ? 'img/complete-order.jpg' : 'img/empty-cart.jpg'}
             description={
               orderComplete
                 ? `Ваш заказ №${oderId} скоро будет передан курьерской службе.`

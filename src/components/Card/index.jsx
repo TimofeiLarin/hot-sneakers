@@ -44,7 +44,7 @@ const Card = ({
       ) : (
         <>
           {onClickAddFavorite && <div className={styles.favorite} onClick={handleClickFavorite}>
-            <img src={!isItemFavorite(idParent) ? '/img/unliked.svg' : '/img/liked.svg'} alt='Unliked' />
+            <img src={!isItemFavorite(idParent) ? 'img/unliked.svg' : 'img/liked.svg'} alt='Unliked' />
           </div>}
           <img width='100%' height={130} src={imageUrl} alt='Sneakers' />
           <h5>{title}</h5>
@@ -55,7 +55,7 @@ const Card = ({
             </div>
             {onClickAddCart && <img
               className={`${styles.plus} cu-p`}
-              src={!isItemAdded(idParent) ? './img/btn-plus.svg' : './img/btn-checked.svg'}
+              src={!isItemAdded(idParent) ? 'img/btn-plus.svg' : 'img/btn-checked.svg'}
               alt='Plus'
               onClick={handleClickAdded}
             />}
