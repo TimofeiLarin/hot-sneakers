@@ -1,13 +1,13 @@
 {
   "files": {
     "main.css": "/hot-sneakers/static/css/main.50168d0d.css",
-    "main.js": "/hot-sneakers/static/js/main.0c0758fc.js",
+    "main.js": "/hot-sneakers/static/js/main.592fd29f.js",
     "index.html": "/hot-sneakers/index.html",
     "main.50168d0d.css.map": "/hot-sneakers/static/css/main.50168d0d.css.map",
-    "main.0c0758fc.js.map": "/hot-sneakers/static/js/main.0c0758fc.js.map"
+    "main.592fd29f.js.map": "/hot-sneakers/static/js/main.592fd29f.js.map"
   },
   "entrypoints": [
     "static/css/main.50168d0d.css",
-    "static/js/main.0c0758fc.js"
+    "static/js/main.592fd29f.js"
   ]
 }
