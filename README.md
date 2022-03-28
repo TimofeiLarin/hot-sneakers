@@ -1,12 +1,12 @@
 # Link: [Hot-Sneakers](https://timofeilarin.github.io/hot-sneakers/)
 
 ## Stack:
--ReactJS
--React Router
--React Context
--React Skeleton
--Axios
--SCSS
+- ReactJS
+- React Router
+- React Context
+- React Skeleton
+- Axios
+- SCSS
 
 # Getting Started with Create React App
 
