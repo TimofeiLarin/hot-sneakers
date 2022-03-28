@@ -1,3 +1,13 @@
+# Link: [Hot-Sneakers](https://timofeilarin.github.io/hot-sneakers/)
+
+## Stack:
+-ReactJS
+-React Router
+-React Context
+-React Skeleton
+-Axios
+-SCSS
+
 # Getting Started with Create React App
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
